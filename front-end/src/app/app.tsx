@@ -68,8 +68,17 @@ export function App() {
                       element={<NavigateToResource resource="customer" />}
                     />
                     <Route path="/customer">
+                      <Route
+                        element={
+                          <CustomerList>
+                            <Outlet />
+                          </CustomerList>
+                        }
+                      >
+                        <Route index element={null} />
+                        <Route path="create" element={<CustomerCreate />} />
+                      </Route>
                       <Route index element={<CustomerList />} />
-                      <Route path="create" element={<CustomerCreate />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>

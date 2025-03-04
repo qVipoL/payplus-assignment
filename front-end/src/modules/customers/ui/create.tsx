@@ -1,15 +1,32 @@
-import { Create, useForm } from "@refinedev/antd";
+import { useModalForm } from "@refinedev/antd";
+import { useNavigation } from "@refinedev/core";
+import { Button, Modal } from "antd";
 import { CustomerDetailsForm } from "./customer-details-form";
 
 export function CustomerCreate() {
-  const { formProps, saveButtonProps } = useForm({
+  const { list } = useNavigation();
+  const { formProps, modalProps, close } = useModalForm({
+    action: "create",
     resource: "customer",
-    redirect: "list",
+    defaultVisible: true,
   });
 
   return (
-    <Create saveButtonProps={saveButtonProps}>
+    <Modal
+      {...modalProps}
+      onCancel={() => {
+        close();
+        list("customer", "replace");
+      }}
+      title="Customer"
+      width={512}
+      footer={
+        <Button block type="primary" size="large" {...modalProps.okButtonProps}>
+          Creating a Customer
+        </Button>
+      }
+    >
       <CustomerDetailsForm formProps={formProps} />
-    </Create>
+    </Modal>
   );
 }
