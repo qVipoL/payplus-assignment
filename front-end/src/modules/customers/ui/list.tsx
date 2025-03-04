@@ -1,5 +1,5 @@
 import { List, useTable } from "@refinedev/antd";
-import { Flex, Table, Typography } from "antd";
+import { Flex, Grid, Table, Typography } from "antd";
 import dayjs from "dayjs";
 import { Customer } from "../model/types";
 import { PropsWithChildren, useState } from "react";
@@ -17,15 +17,23 @@ export function CustomerList({ children }: PropsWithChildren) {
     },
   });
 
+  const { xs } = Grid.useBreakpoint();
+
   return (
     <>
       <List title="List of Customers" breadcrumb={false}>
-        <Flex gap={16} style={{ height: "calc(100vh - 200px)" }}>
+        <Flex
+          vertical={xs}
+          gap={16}
+          style={{
+            height: xs ? undefined : "calc(100vh - 200px)",
+          }}
+        >
           <Flex
             style={{
               flex: 1,
-              borderRight: "1px solid #ababab",
-              paddingRight: 16,
+              borderRight: xs ? "none" : "1px solid #ababab",
+              paddingRight: xs ? 0 : 16,
             }}
           >
             <Table<Customer>
@@ -61,7 +69,7 @@ export function CustomerList({ children }: PropsWithChildren) {
               />
             </Table>
           </Flex>
-          <Flex style={{ flex: 1 }}>
+          <Flex style={{ flex: xs ? undefined : 1 }}>
             {selectedCustomer ? (
               <Flex vertical gap={8}>
                 <Flex gap={8}>
