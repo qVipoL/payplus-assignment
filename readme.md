@@ -12,3 +12,25 @@
 
 - ID Number: `221519002`
 - Password: `123456`
+
+## Back End
+
+### What is used?
+
+- Nestjs
+- Prisma - ORM
+- JWT
+- SQLite
+
+## Front End
+
+### What is used?
+
+- Refine - react framework to build faster
+
+### Architecture
+
+- Modular FSD
+  - app - global app inits + routing
+  - modules - app modules (auth, customers, etc)
+  - shared - things that can be shared across projects (libs, ui-kit, etc)
